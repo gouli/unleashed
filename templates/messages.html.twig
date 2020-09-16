@@ -1,0 +1,10 @@
+{# read and display just one flash message type #}
+
+{# read and display all flash messages #}
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }} flash-{{ label }}" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}

@@ -1,0 +1,16 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+.container {
+  padding: 1%;
+}
+.container #sidebar {
+  padding: 1%;
+}
+.container #content {
+  padding-left: 3%;
+}
+.container #content .row {
+  border: 1px solid grey;
+}
+.container #content .rowheader {
+  background-color: #addfff;
+}

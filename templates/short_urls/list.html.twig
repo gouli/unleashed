@@ -1,0 +1,42 @@
+{# templates/tiny_urls/view.html.twig #}
+{% extends './base.html.twig' %}
+
+{% block content %}
+  <h1>Short URLs Listing</h1>
+  <div class="container">
+    <div class="row rowheader">
+      <div class="col-sm">
+        Id
+      </div>
+      <div class="col-sm">
+        Long URL
+      </div>
+      <div class="col-sm">
+        Tiny URL
+      </div>
+      <div class="col-sm">
+        Actions
+      </div>
+    </div>
+
+    {% for shortlinkinfo in viewshortlinkInfo %}
+      <div class="row">
+        <div class="col-sm">
+          {{ shortlinkinfo.id }}
+        </div>
+        <div class="col-sm">
+          {{ shortlinkinfo.fullurl }}
+        </div>
+        <div class="col-sm">
+          {{ shortlinkinfo.shortlink }}
+        </div>
+        <div class="col-sm">
+        <a href="{{ path('view_shortlink_info', {shortlink: shortlinkinfo.shortlink}) }}">View</a> |
+          <a href="{{ path('edit_shortlink_info', {shortlink: shortlinkinfo.shortlink}) }}">Edit</a> |
+          <a href="{{ path('delete_shortlink_info', {shortlink: shortlinkinfo.shortlink}) }}">Delete</a> |
+          <a href="{{ path('redirect_shortlink', {shortlink: shortlinkinfo.shortlink}) }}">Redirect to Original URL</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

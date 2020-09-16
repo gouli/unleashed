@@ -3,10 +3,43 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+
+        {% block stylesheets %}
+            {# 'app' must match the first argument to addEntry() in webpack.config.js #}
+            {{ encore_entry_link_tags('app') }}
+
+            <!-- Renders a link tag (if your module requires any CSS)
+                 <link rel="stylesheet" href="/build/app.css"> -->
+        {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+      <div class="container-fluid">
+        {% block body %}
+            <div id="header" class="container">
+                {{ include('/header.html.twig') }}
+            </div>
+            <div class="container">
+              <div class="row">
+                <div id="sidebar" class="col col-sm-3 first-column">
+                  {{ include('/sidebar.html.twig') }}
+                </div>
+                <div id="content" class="col col-sm-9 second-column">
+                    {{ include('/messages.html.twig') }}
+                    {% block content %}{% endblock %}
+                </div>
+              </div>
+            </div>
+        {% endblock %}
+      <!-- Content here -->
+      </div>
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+
+            <!-- Renders app.js & a webpack runtime.js file
+                <script src="/build/runtime.js"></script>
+                <script src="/build/app.js"></script> -->
+        {% endblock %}
+    </body>
     </body>
 </html>
